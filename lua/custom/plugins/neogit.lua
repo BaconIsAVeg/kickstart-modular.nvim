@@ -1,10 +1,17 @@
 return {
-  'NeogitOrg/neogit',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'sindrets/diffview.nvim',
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
 
-    'nvim-telescope/telescope.nvim',
+      -- Only one of these is needed.
+      'nvim-telescope/telescope.nvim', -- optional
+      'ibhagwan/fzf-lua', -- optional
+      'echasnovski/mini.pick', -- optional
+    },
+    config = true,
+
+    vim.keymap.set('n', '<leader>g', '<cmd>Neogit kind=floating<cr>', { desc = 'Neo[G]it' }),
   },
-  config = true,
 }
