@@ -18,6 +18,7 @@ return {
           width = 30,
         },
         filesystem = {
+          hijack_netrw_behavior = 'open_current',
           filtered_items = {
             visible = true,
           },
@@ -29,5 +30,6 @@ return {
     end,
   },
 
-  vim.keymap.set('n', '\\', '<cmd>Neotree left filesystem<cr>', { desc = '[F]ile explorer' }),
+  -- vim.keymap.set('n', '\\', '<cmd>Neotree left filesystem<cr>', { desc = 'File explorer' }),
+  vim.keymap.set('n', '\\', '<cmd>Neotree current reveal_force_cwd<cr>', { desc = 'Netrw explorer' }),
 }
