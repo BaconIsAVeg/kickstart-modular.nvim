@@ -103,6 +103,16 @@ return {
         },
         sources = {
           {
+            name = 'spell',
+            option = {
+              keep_all_entries = false,
+              enable_in_context = function()
+                return require('cmp.config.context').in_treesitter_capture 'spell'
+              end,
+              preselect_correct_word = true,
+            },
+          },
+          {
             name = 'lazydev',
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,

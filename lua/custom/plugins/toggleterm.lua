@@ -4,11 +4,11 @@ return {
     version = '*',
     config = true,
     opts = {
-      size = 20,
+      size = 15,
       float_opts = {
         border = 'curved',
         width = 120,
-        height = 40,
+        height = 25,
         title_pos = 'left',
       },
     },

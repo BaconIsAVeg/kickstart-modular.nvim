@@ -17,6 +17,7 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      require('mini.trailspace').setup()
       require('mini.bufremove').setup()
 
       -- Simple and easy statusline.

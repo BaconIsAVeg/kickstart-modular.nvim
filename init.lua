@@ -77,5 +77,23 @@ require('lspconfig').intelephense.setup {
   },
 }
 
+-- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+--   pattern = { '*.norg' },
+--   command = 'set conceallevel=3',
+-- })
+
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = { '*' },
+  callback = function(ev)
+    save_cursor = vim.fn.getpos '.'
+    vim.cmd [[%s/\s\+$//e]]
+    vim.fn.setpos('.', save_cursor)
+  end,
+})
+
+vim.opt.spell = false
+vim.opt.spelllang = 'en_us'
+vim.keymap.set('n', '<leader>ts', '<cmd>set spell!<cr>', { desc = 'Toggle [S]pellcheck' })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

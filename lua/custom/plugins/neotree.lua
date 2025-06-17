@@ -32,4 +32,5 @@ return {
 
   -- vim.keymap.set('n', '\\', '<cmd>Neotree left filesystem<cr>', { desc = 'File explorer' }),
   vim.keymap.set('n', '\\', '<cmd>Neotree current reveal_force_cwd<cr>', { desc = 'Netrw explorer' }),
+  vim.keymap.set('n', '<leader>tf', '<cmd>Neotree current position=left<cr>', { desc = 'Toggle [F]iletree' }),
 }
