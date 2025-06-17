@@ -10,14 +10,15 @@ return {
     config = function()
       require('aerial').setup {
         layout = {
-          default_direction = 'prefer_right',
-          min_width = { 20, 0.2 },
+          min_width = { 30, 0.2 },
+          max_width = { 40, 0.8 },
           resize_to_content = false,
         },
-        close_automatic_events = { 'unfocus', 'unsupported' },
+        attach_mode = 'window',
+        close_automatic_events = { 'switch_buffer', 'unfocus', 'unsupported' },
         autojump = true,
       }
     end,
   },
-  vim.keymap.set('n', '|', '<cmd>AerialOpen<cr>', { desc = '[S]ymbol explorer' }),
+  vim.keymap.set('n', '|', '<cmd>AerialToggle right<cr>', { desc = '[S]ymbol explorer' }),
 }

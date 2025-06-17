@@ -9,11 +9,20 @@ return {
     },
     config = function()
       require('neo-tree').setup {
+        event_handlers = {
+          {
+            event = 'file_open_requested',
+            handler = function()
+              require('neo-tree.command').execute { action = 'close' }
+            end,
+          },
+        },
         close_if_last_window = true,
         window = {
           mappings = {
             ['s'] = 'open_split',
             ['S'] = 'open_vsplit',
+            ['\\'] = 'close_window',
           },
           width = 30,
         },
@@ -30,7 +39,6 @@ return {
     end,
   },
 
-  -- vim.keymap.set('n', '\\', '<cmd>Neotree left filesystem<cr>', { desc = 'File explorer' }),
-  vim.keymap.set('n', '\\', '<cmd>Neotree current reveal_force_cwd<cr>', { desc = 'Netrw explorer' }),
+  vim.keymap.set('n', '\\', '<cmd>Neotree position=current reveal_force_cwd<cr>', { desc = 'Netrw explorer' }),
   vim.keymap.set('n', '<leader>tf', '<cmd>Neotree current position=left<cr>', { desc = 'Toggle [F]iletree' }),
 }

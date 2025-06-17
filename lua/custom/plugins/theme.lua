@@ -1,5 +1,13 @@
 return {
   {
+    'fcancelinha/nordern.nvim',
+    branch = 'master',
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'nordern'
+    end,
+  },
+  {
     'ViViDboarder/wombat.nvim',
     dependencies = { { 'rktjmp/lush.nvim' } },
     opts = {
@@ -23,7 +31,7 @@ return {
       vim.g.gruvbox_material_enable_italic = 1
       vim.g.gruvbox_material_background = 'hard'
       vim.g.gruvbox_material_better_performance = 1
-      vim.g.gruvbox_material_transparent_background = 2
+      vim.g.gruvbox_material_transparent_background = 1
       vim.cmd.colorscheme 'gruvbox-material'
     end,
   },

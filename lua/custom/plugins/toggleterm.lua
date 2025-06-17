@@ -14,5 +14,6 @@ return {
     },
   },
 
-  vim.keymap.set('n', '<A-i>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = 'Toggle a split terminal' }),
+  vim.keymap.set('n', '<A-t>', '<cmd>ToggleTerm direction=horizontal<cr>', { desc = 'Toggle a split terminal' }),
+  vim.keymap.set('n', '<A-S-t>', '<cmd>ToggleTerm direction=float<cr>', { desc = 'Toggle a split terminal' }),
 }

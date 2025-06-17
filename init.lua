@@ -19,75 +19,84 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
-require('lspconfig').intelephense.setup {
-  settings = {
-    intelephense = {
-      stubs = {
-        'bcmath',
-        'bz2',
-        'Core',
-        'curl',
-        'date',
-        'dom',
-        'fileinfo',
-        'filter',
-        'gd',
-        'gettext',
-        'hash',
-        'iconv',
-        'imap',
-        'intl',
-        'json',
-        'libxml',
-        'mbstring',
-        'mcrypt',
-        'mysql',
-        'mysqli',
-        'password',
-        'pcntl',
-        'pcre',
-        'PDO',
-        'pdo_mysql',
-        'Phar',
-        'rdkafka',
-        'readline',
-        'regex',
-        'session',
-        'SimpleXML',
-        'sockets',
-        'sodium',
-        'standard',
-        'superglobals',
-        'tokenizer',
-        'xml',
-        'xdebug',
-        'xmlreader',
-        'xmlwriter',
-        'yaml',
-        'zip',
-        'zlib',
-      },
-      environment = {
-        -- includePaths = { '', '' },
-      },
-      files = {
-        maxSize = 2000000,
-      },
-    },
-  },
-}
-
+-- require('lspconfig').intelephense.setup {
+--   settings = {
+--     intelephense = {
+--       stubs = {
+--         'bcmath',
+--         'bz2',
+--         'Core',
+--         'curl',
+--         'date',
+--         'dom',
+--         'fileinfo',
+--         'filter',
+--         'gd',
+--         'gettext',
+--         'hash',
+--         'iconv',
+--         'imap',
+--         'intl',
+--         'json',
+--         'libxml',
+--         'mbstring',
+--         'mcrypt',
+--         'mysql',
+--         'mysqli',
+--         'password',
+--         'pcntl',
+--         'pcre',
+--         'PDO',
+--         'pdo_mysql',
+--         'Phar',
+--         'rdkafka',
+--         'readline',
+--         'regex',
+--         'session',
+--         'SimpleXML',
+--         'sockets',
+--         'sodium',
+--         'standard',
+--         'superglobals',
+--         'tokenizer',
+--         'xml',
+--         'xdebug',
+--         'xmlreader',
+--         'xmlwriter',
+--         'yaml',
+--         'zip',
+--         'zlib',
+--       },
+--       environment = {
+--         -- includePaths = { '', '' },
+--       },
+--       files = {
+--         maxSize = 2000000,
+--       },
+--     },
+--   },
+-- }
+--
 -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 --   pattern = { '*.norg' },
 --   command = 'set conceallevel=3',
 -- })
 
+-- Trim trailing whitespace on save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = { '*' },
-  callback = function(ev)
-    save_cursor = vim.fn.getpos '.'
+  callback = function()
+    Save_Cursor = vim.fn.getpos '.'
     vim.cmd [[%s/\s\+$//e]]
-    vim.fn.setpos('.', save_cursor)
+    vim.fn.setpos('.', Save_Cursor)
+  end,
+})
+
+-- Send a SIGUSR1 signal to Kitty when the config file is saved
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  pattern = { 'kitty.conf' },
+  callback = function()
+    vim.fn.system 'kill -SIGUSR1 $(pgrep -x kitty)'
   end,
 })
 
